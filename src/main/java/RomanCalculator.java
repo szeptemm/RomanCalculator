@@ -1,62 +1,35 @@
+import java.util.HashMap;
+
 public class RomanCalculator {
 
-    String add(String ingredientI, String ingredientII) {
-        return "";
-    }
+    private HashMap<String, Integer> map = new HashMap<>();
 
     int roman2Arabic(String roman) {
-
-        char[] romanChars = roman.toCharArray();
-        int romanLen = romanChars.length;
+        setMap(map);
         int arabic = 0;
-        int previosChar = 0;
+        int previous = 0;
+        char[] romanChars = roman.toCharArray();
 
-        for (int i = romanLen - 1; i >= 0; i--) {
-            if ('I' == romanChars[i]) {
-                if (previosChar > 1) {
-                    arabic -= 1;
-                } else {
-                    arabic += 1;
-                }
+        for (int i = romanChars.length - 1; i >= 0; i--) {
+            int actual = map.get(String.valueOf(romanChars[i]));
+            if(previous>actual){
+                arabic -= actual;
+            } else {
+                arabic += actual;
             }
-            if ('V' == romanChars[i]) {
-                arabic += 5;
-                previosChar = 5;
-            }
-            if ('X' == romanChars[i]) {
-                if (previosChar > 10) {
-                    arabic -= 10;
-                } else {
-                    arabic += 10;
-                    previosChar = 10;
-                }
-            }
-            if ('L' == romanChars[i]) {
-                arabic += 50;
-                previosChar = 50;
-            }
-            if ('C' == romanChars[i]) {
-                if (previosChar > 100) {
-                    arabic -= 100;
-                } else {
-                    arabic += 100;
-                    previosChar = 100;
-                }
-            }
-            if ('D' == romanChars[i]) {
-                arabic += 500;
-                previosChar = 500;
-            }
-            if ('M' == romanChars[i]) {
-                arabic += 1000;
-                previosChar = 1000;
-            }
+            previous = actual;
         }
         return arabic;
     }
 
-    String arabic2Roman(int arabic) {
-        return "";
+    private void setMap(HashMap<String, Integer> map) {
+        map.put("I", 1);
+        map.put("V", 5);
+        map.put("X", 10);
+        map.put("L", 50);
+        map.put("C", 100);
+        map.put("D", 500);
+        map.put("M", 1000);
     }
 
 }

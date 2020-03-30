@@ -2,6 +2,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class RomanCalculatorTest {
 
@@ -13,130 +14,26 @@ class RomanCalculatorTest {
     }
 
     @Test
-    void shouldIGive1() {
-        // when
-        String roman = "I";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(1);
+    void shouldReturnRomanWhenArabicIsGiven() {
+
+        assertAll("Should change roman to arabic",
+                () -> assertThat(calculator.roman2Arabic("I")).isEqualTo(1),
+                () -> assertThat(calculator.roman2Arabic("II")).isEqualTo(2),
+                () -> assertThat(calculator.roman2Arabic("III")).isEqualTo(3),
+                () -> assertThat(calculator.roman2Arabic("IV")).isEqualTo(4),
+                () -> assertThat(calculator.roman2Arabic("V")).isEqualTo(5),
+                () -> assertThat(calculator.roman2Arabic("IX")).isEqualTo(9),
+                () -> assertThat(calculator.roman2Arabic("X")).isEqualTo(10),
+                () -> assertThat(calculator.roman2Arabic("L")).isEqualTo(50),
+                () -> assertThat(calculator.roman2Arabic("XL")).isEqualTo(40),
+                () -> assertThat(calculator.roman2Arabic("XC")).isEqualTo(90),
+                () -> assertThat(calculator.roman2Arabic("C")).isEqualTo(100),
+                () -> assertThat(calculator.roman2Arabic("XLIV")).isEqualTo(44),
+                () -> assertThat(calculator.roman2Arabic("XCIX")).isEqualTo(99),
+                () -> assertThat(calculator.roman2Arabic("CMXCIX")).isEqualTo(999),
+                () -> assertThat(calculator.roman2Arabic("MMXX")).isEqualTo(2020),
+                () -> assertThat(calculator.roman2Arabic("MCMLIX")).isEqualTo(1959)
+        );
     }
 
-    @Test
-    void shouldIGive2() {
-        // when
-        String roman = "II";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(2);
-    }
-
-    @Test
-    void shouldIGive3() {
-        // when
-        String roman = "III";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(3);
-    }
-
-    @Test
-    void shouldIGive5() {
-        // when
-        String roman = "V";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(5);
-    }
-
-    @Test
-    void shouldIGive4() {
-        // when
-        String roman = "IV";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(4);
-    }
-
-    @Test
-    void shouldIGive10() {
-        // when
-        String roman = "X";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(10);
-    }
-
-    @Test
-    void shouldIGive9() {
-        // when
-        String roman = "IX";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(9);
-    }
-
-    @Test
-    void shouldIGive50() {
-        // when
-        String roman = "L";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(50);
-    }
-
-    @Test
-    void shouldIGive40() {
-        // when
-        String roman = "XL";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(40);
-    }
-
-    @Test
-    void shouldIGive90() {
-        // when
-        String roman = "XC";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(90);
-    }
-
-    @Test
-    void shouldIGive100() {
-        // when
-        String roman = "C";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(100);
-    }
-
-    @Test
-    void shouldIGive44() {
-        // when
-        String roman = "XLIV";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(44);
-    }
-
-    @Test
-    void shouldIGive99() {
-        // when
-        String roman = "XCIX";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(99);
-    }
-
-    @Test
-    void shouldIGive999() {
-        // when
-        String roman = "CMXCIX";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(999);
-    }
-
-    @Test
-    void shouldIGive2020() {
-        // when
-        String roman = "MMXX";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(2020);
-    }
-
-    @Test
-    void shouldIGive1959() {
-        // when
-        String roman = "MCMLIX";
-        // then
-        assertThat(calculator.roman2Arabic(roman)).isEqualTo(1959);
-    }
 }
